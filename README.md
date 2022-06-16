@@ -1,2 +1,3 @@
 # validator
-A form verification library written in php8 attributes
+A class object validation library written in php8 attributes.  
+The validations from laravel validation.

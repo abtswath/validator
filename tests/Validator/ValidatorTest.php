@@ -2,24 +2,24 @@
 
 namespace Tests\Validator;
 
-use Abtswath\Validator\Contracts\Rules\Attributes\NotNull;
+use Abtswath\Validator\Exceptions\ValidationException;
+use Abtswath\Validator\Validator;
+use PHPUnit\Framework\TestCase;
 
-class ValidatorTest {
+class ValidatorTest extends TestCase {
 
-    public function testCreateValidator(): void {
-
-
-    }
-
-    public function testClass() {
-        return new class {
-            #[NotNull()]
-            private string $name;
-
-            private int $age;
-
-            private int $gender;
-        };
+    public function testValidate(): void {
+        $user = new User(
+            'abtswath',
+            'abcd11234.',
+            'sdfa@kl.com',
+            19,
+            3,
+            null
+        );
+        $validator = new Validator($user);
+        $validator->validate();
+        $this->expectException(ValidationException::class);
     }
 
 }
