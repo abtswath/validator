@@ -9,6 +9,9 @@ use ReflectionAttribute;
 use ReflectionObject;
 use ReflectionProperty;
 
+/**
+ * @todo I think it should be restructured
+ */
 class Validator {
 
     protected object $object;
@@ -184,6 +187,7 @@ class Validator {
 
     /**
      * @throws RuleDoesNotExistException
+     * @todo use other way to resolve the rules
      */
     public function validateProperty(string $property, ReflectionAttribute $attribute): void {
         $rule = $this->resolve($attribute->getName());
@@ -194,6 +198,13 @@ class Validator {
         }
     }
 
+    /**
+     * @param string $property
+     * @param string $rule
+     * @param MessageProvider $attribute
+     * @return void
+     * @todo Make it better to collect some messages and failed rules
+     */
     public function addFailure(string $property, string $rule, MessageProvider $attribute): void {
         $this->message->add(
             $property,
